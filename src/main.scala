@@ -7,7 +7,45 @@ class Human() {
     var isPig: Boolean = _
 }
 
-class Contract(User: Human) {
+class Adults extends Human {
+    var hasCreditCard: Boolean = _
+    var isEatPermission: Boolean = _
+}
+
+class ifContract(User: Human) {
+    val sc = new java.util.Scanner(System.in)
+    var isContract: Boolean = false
+    var signatureName: String = ""
+
+    def signature(): Unit = {
+        signatureName = sc.next()
+        User.name = this.signatureName
+        isContract = true
+    }
+}
+
+class ifbaba(var User: Human) extends Adults {
+    name = "yubaba"
+
+    def initMessage(): Unit = {
+        println("契約書だよ。そこに名前を書きな。")
+        val contract = new ifContract(User)
+        contract.signature()
+        if (contract.signatureName == "") {
+            println("なんだいここで働きたくないのかい")
+            exit()
+        }
+        println("フン。" + contract.signatureName + "というのかい。贅沢な名だねぇ。")
+    }
+
+    def changeName(): Unit = {
+        val newNameIndex: Int = Random.nextInt(User.name.length)
+        User.name = User.name.substring(newNameIndex, newNameIndex + 1)
+        println("今からお前の名前は" + User.name + "だ。いいかい、" + User.name + "だよ。分かったら返事をするんだ、" + User.name + "!!")
+    }
+}
+
+class eitherContract() {
     val sc = new java.util.Scanner(System.in)
     var isContract: Boolean = false
 
@@ -15,21 +53,15 @@ class Contract(User: Human) {
         val tmpName = sc.nextLine()
         if (tmpName != "") Right(tmpName) else Left("名前がないよ")
     }
-
-    var signatureName = signature()
+    var signatureName:Either[String, String] = signature()
 }
 
-class Adults extends Human {
-    var hasCreditCard: Boolean = _
-    var isEatPermission: Boolean = _
-}
-
-class Yubaba(var User: Human) extends Adults {
+class eitherbaba(var User: Human) extends Adults {
     name = "yubaba"
 
     def initMessage(): Unit = {
         println("契約書だよ。そこに名前を書きな。")
-        val contract = new Contract(User)
+        val contract = new eitherContract()
         contract.signatureName match {
             case Right(v) =>
                 println("フン。" + v + "というのかい。贅沢な名だねぇ。")
@@ -70,7 +102,7 @@ object Main {
         val sen = new Human
         val father = new Father()
         val mother = new Mother(father)
-        val yubaba = new Yubaba(sen)
+        val yubaba = new ifbaba(sen)
 
         father.eatFoods()
         mother.eatFoods()
