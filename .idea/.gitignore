@@ -1,9 +1,3 @@
-<<<<<<< HEAD
-# Default ignored files
-/shelf/
-/.idea/workspace.xml
-/out
-=======
 # IntelliJ #
 /.idea/**/shelf/
 /.idea/**/tasks.xml
@@ -35,5 +29,3 @@ project/plugins/project/
 .history
 .cache
 .lib/
-null/*
->>>>>>> 7cabdf3... :add: sbt
